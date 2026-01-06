@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/cli"
+    },
+    {
+      "path": "./apps/dashboard"
+    },
+    {
+      "path": "./libs/core"
+    },
+    {
+      "path": "./libs/mf-plugins"
+    },
+    {
+      "path": "./libs/utils"
+    }
+  ]
+}
