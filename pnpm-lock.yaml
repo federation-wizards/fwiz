@@ -199,6 +199,15 @@ importers:
         specifier: ^2.3.0
         version: 2.8.1
 
+  tools/migrate-analyzer:
+    devDependencies:
+      tsx:
+        specifier: ^4.19.2
+        version: 4.22.4
+      vitest:
+        specifier: ^4.0.0
+        version: 4.0.16(@types/node@20.19.9)(@vitest/ui@4.0.16)(jiti@2.4.2)(jsdom@22.1.0)(terser@5.44.1)(tsx@4.22.4)(yaml@2.9.0)
+
 packages:
 
   '@babel/code-frame@7.27.1':
@@ -11364,7 +11373,6 @@ snapshots:
       '@esbuild/win32-arm64': 0.28.1
       '@esbuild/win32-ia32': 0.28.1
       '@esbuild/win32-x64': 0.28.1
-    optional: true
 
   escalade@3.2.0: {}
 
@@ -14371,7 +14379,6 @@ snapshots:
       esbuild: 0.28.1
     optionalDependencies:
       fsevents: 2.3.3
-    optional: true
 
   type-check@0.4.0:
     dependencies:
