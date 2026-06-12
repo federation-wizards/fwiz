@@ -1,0 +1,7 @@
+{
+  "name": "checkout",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/checkout/src",
+  "projectType": "application",
+  "tags": ["type:remote", "scope:checkout"]
+}

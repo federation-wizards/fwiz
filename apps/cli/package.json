@@ -95,12 +95,14 @@
           }
         }
       },
-      "test": {
-        "options": {
-          "passWithNoTests": true
-        }
-      }
+      "test": {}
     }
   },
-  "dependencies": {}
+  "bin": {
+    "fwiz": "./dist/main.js"
+  },
+  "dependencies": {
+    "@federation-wizards/core": "workspace:*",
+    "commander": "^15.0.0"
+  }
 }
