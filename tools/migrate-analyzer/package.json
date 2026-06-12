@@ -1,0 +1,14 @@
+{
+  "name": "@federation-wizards/migrate-analyzer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "analyze": "node --import tsx src/cli.ts",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "vitest": "^4.0.0"
+  }
+}
