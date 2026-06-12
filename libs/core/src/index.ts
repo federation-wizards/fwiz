@@ -5,3 +5,4 @@ export * from './lib/config/init.js';
 export * from './lib/config/load.js';
 export * from './lib/workspace/detect.js';
 export * from './lib/workspace/patch.js';
+export * from './lib/shared/index.js';
