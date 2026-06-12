@@ -8,16 +8,22 @@ const sharedDependencySchema = Joi.object({
   eager: Joi.boolean().required(),
 });
 
+const devProjectSchema = Joi.object({
+  command: Joi.string().optional(),
+});
+
 const hostSchema = Joi.object({
   name: Joi.string().required(),
   project: Joi.string().optional(),
   port: Joi.number().integer().min(1).max(65535).required(),
+  dev: devProjectSchema.optional(),
 });
 
 const remoteSchema = Joi.object({
   name: Joi.string().required(),
   project: Joi.string().optional(),
   port: Joi.number().integer().min(1).max(65535).required(),
+  dev: devProjectSchema.optional(),
 });
 
 export const fwizConfigSchema = Joi.object({

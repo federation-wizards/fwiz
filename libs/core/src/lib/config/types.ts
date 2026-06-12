@@ -6,16 +6,22 @@ export interface SharedDependencyConfig {
   eager: boolean;
 }
 
+export interface DevProjectConfig {
+  command?: string;
+}
+
 export interface HostConfig {
   name: string;
   project?: string;
   port: number;
+  dev?: DevProjectConfig;
 }
 
 export interface RemoteConfig {
   name: string;
   project?: string;
   port: number;
+  dev?: DevProjectConfig;
 }
 
 export interface FwizConfig {
