@@ -1,5 +1,6 @@
 import { Command } from 'commander';
 
+import { registerAnalyzeSharedCommand } from './commands/analyze-shared.js';
 import { registerInitCommand } from './commands/init.js';
 
 export function createProgram(): Command {
@@ -11,6 +12,7 @@ export function createProgram(): Command {
     .version('0.0.1');
 
   registerInitCommand(program);
+  registerAnalyzeSharedCommand(program);
 
   return program;
 }
