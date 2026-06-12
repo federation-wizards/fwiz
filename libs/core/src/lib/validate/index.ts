@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { generateMfManifest } from '../manifest/generate.js';
-import { FwizConfigError, loadFwizConfig } from '../config/load.js';
+import { loadFwizConfig } from '../config/load.js';
 import type { RemoteConfig } from '../config/types.js';
 import { createRegistryBackend } from '../registry/backends/factory.js';
 import type { RegistryBackend } from '../registry/backends/types.js';
@@ -181,16 +181,6 @@ export async function validateManifests(
     errors,
     warnings,
   };
-}
-
-export function assertRegistryConfigured(cwd: string): void {
-  const config = loadFwizConfig(cwd);
-
-  if (!config.registry) {
-    throw new FwizConfigError(
-      'fwiz.config.yaml is missing a registry section required for validate.',
-    );
-  }
 }
 
 export * from './types.js';
