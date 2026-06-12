@@ -16,8 +16,13 @@
     }
   },
   "dependencies": {
+    "express": "^5.1.0",
+    "http-proxy-middleware": "^3.0.5",
     "joi": "^18.2.1",
     "tslib": "^2.3.0",
     "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3"
   }
 }

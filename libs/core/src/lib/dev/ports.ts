@@ -1,0 +1,4 @@
+import { createServer } from 'node:net';
+export async function isPortAvailable(port: number, host = '127.0.0.1'): Promise<boolean> { return new Promise((resolve) => { const server = createServer(); server.once('error', () => resolve(false)); server.once('listening', () => server.close(() => resolve(true))); server.listen(port, host); }); }
+export async function findPortConflicts(ports: number[], host = '127.0.0.1'): Promise<number[]> { const conflicts: number[] = []; for (const port of [...new Set(ports)]) if (!(await isPortAvailable(port, host))) conflicts.push(port); return conflicts; }
+export function allocateProxyPort(hostPort: number, usedPorts: number[]): number { const used = new Set(usedPorts); let candidate = hostPort + 1000; while (candidate <= 65535) { if (!used.has(candidate)) return candidate; candidate += 1; } throw new Error(`Unable to allocate proxy port above ${hostPort + 1000}.`); }

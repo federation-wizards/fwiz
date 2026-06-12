@@ -1,0 +1,3 @@
+const pad = (value: string, length: number) => value.padEnd(length, ' ');
+export function buildServerRows(processes: Array<{ name: string; role: 'host' | 'remote'; url: string }>, proxyUrl: string) { return [...processes, { name: 'proxy', role: 'proxy' as const, url: proxyUrl }]; }
+export function formatServerTable(rows: Array<{ name: string; role: string; url: string }>): string { const lines = ['', '  Dev servers', '', `  ${pad('Name', 10)} ${pad('Role', 7)} URL`, `  ${pad('─'.repeat(10), 10)} ${pad('─'.repeat(7), 7)} ${'─'.repeat(24)}`]; for (const row of rows) lines.push(`  ${pad(row.name, 10)} ${pad(row.role, 7)} ${row.url}`); lines.push(''); return lines.join('\n'); }
