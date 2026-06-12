@@ -1,5 +1,6 @@
 import { Command } from 'commander';
 
+import { registerDashboardCommand } from './commands/dashboard.js';
 import { registerInitCommand } from './commands/init.js';
 
 export function createProgram(): Command {
@@ -11,6 +12,7 @@ export function createProgram(): Command {
     .version('0.0.1');
 
   registerInitCommand(program);
+  registerDashboardCommand(program);
 
   return program;
 }
