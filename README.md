@@ -9,7 +9,7 @@ Federation Wizards (fwiz) is an open-source toolkit for **Module Federation** an
 
 ## What’s in this repo
 
-- **CLI**: `apps/cli` — Node.js CLI (the “wizard”)
+- **CLI**: `apps/cli` — Node.js CLI (the “wizard”), published as `@federation-wizards/fwiz`
 - **Dashboard**: `apps/dashboard` — React + Vite UI
 - **Libraries**:
   - `libs/core`
@@ -22,29 +22,38 @@ Federation Wizards (fwiz) is an open-source toolkit for **Module Federation** an
 ### Prerequisites
 
 - Node.js 20+
-- pnpm
 
-### Install
+### Install the CLI
+
+```bash
+# Global install
+npm install -g @federation-wizards/fwiz
+
+# Or run without installing
+npx @federation-wizards/fwiz
+```
+
+### Development (monorepo)
+
+Requires [pnpm](https://pnpm.io/).
 
 ```bash
 pnpm install
 ```
 
-### Run
-
 ```bash
 # Dashboard (dev)
 pnpm nx dev @federation-wizards/dashboard
 
-# CLI (build)
-pnpm nx build @federation-wizards/cli
+# CLI (build publishable output)
+pnpm build:cli
 ```
 
 ### Test / lint / build
 
 ```bash
-pnpm nx lint @federation-wizards/cli
-pnpm nx test @federation-wizards/cli
+pnpm nx lint @federation-wizards/fwiz
+pnpm nx test @federation-wizards/fwiz
 
 pnpm nx test @federation-wizards/dashboard
 pnpm nx build @federation-wizards/dashboard
@@ -60,5 +69,3 @@ See `CONTRIBUTING.md`.
 ## License
 
 MIT — see `LICENSE`.
-
-

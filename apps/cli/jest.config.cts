@@ -9,7 +9,7 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 module.exports = {
-  displayName: '@federation-wizards/cli',
+  displayName: '@federation-wizards/fwiz',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
