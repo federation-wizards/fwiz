@@ -1,6 +1,7 @@
 import { Command } from 'commander';
 
 import { registerInitCommand } from './commands/init.js';
+import { registerPublishManifestCommand } from './commands/publish-manifest.js';
 
 export function createProgram(): Command {
   const program = new Command();
@@ -11,6 +12,7 @@ export function createProgram(): Command {
     .version('0.0.1');
 
   registerInitCommand(program);
+  registerPublishManifestCommand(program);
 
   return program;
 }

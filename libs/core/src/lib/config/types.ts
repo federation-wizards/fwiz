@@ -18,6 +18,21 @@ export interface RemoteConfig {
   port: number;
 }
 
+export type RegistryBackendType = 's3' | 'http';
+
+export interface RegistryConfig {
+  type: RegistryBackendType;
+  baseUrl: string;
+  prefix?: string;
+  remotesRegistryKey?: string;
+  uploadBaseUrl?: string;
+  headers?: Record<string, string>;
+  bucket?: string;
+  region?: string;
+  endpoint?: string;
+  forcePathStyle?: boolean;
+}
+
 export interface FwizConfig {
   version: string;
   workspace: {
@@ -26,6 +41,7 @@ export interface FwizConfig {
   hosts: HostConfig[];
   remotes: RemoteConfig[];
   shared: Record<string, SharedDependencyConfig>;
+  registry?: RegistryConfig;
 }
 
 export interface WorkspaceInfo {

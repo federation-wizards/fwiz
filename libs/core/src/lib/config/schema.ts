@@ -20,6 +20,35 @@ const remoteSchema = Joi.object({
   port: Joi.number().integer().min(1).max(65535).required(),
 });
 
+const registrySchema = Joi.object({
+  type: Joi.string().valid('s3', 'http').required(),
+  baseUrl: Joi.string().uri().required(),
+  prefix: Joi.string().optional(),
+  remotesRegistryKey: Joi.string().optional(),
+  uploadBaseUrl: Joi.string().uri().optional(),
+  headers: Joi.object().pattern(Joi.string(), Joi.string()).optional(),
+  bucket: Joi.string().when('type', {
+    is: 's3',
+    then: Joi.required(),
+    otherwise: Joi.forbidden(),
+  }),
+  region: Joi.string().when('type', {
+    is: 's3',
+    then: Joi.optional(),
+    otherwise: Joi.forbidden(),
+  }),
+  endpoint: Joi.string().uri().when('type', {
+    is: 's3',
+    then: Joi.optional(),
+    otherwise: Joi.forbidden(),
+  }),
+  forcePathStyle: Joi.boolean().when('type', {
+    is: 's3',
+    then: Joi.optional(),
+    otherwise: Joi.forbidden(),
+  }),
+});
+
 export const fwizConfigSchema = Joi.object({
   version: Joi.string().required(),
   workspace: Joi.object({
@@ -28,6 +57,7 @@ export const fwizConfigSchema = Joi.object({
   hosts: Joi.array().items(hostSchema).min(1).required(),
   remotes: Joi.array().items(remoteSchema).required(),
   shared: Joi.object().pattern(Joi.string(), sharedDependencySchema).required(),
+  registry: registrySchema.optional(),
 });
 
 export function validateFwizConfig(
