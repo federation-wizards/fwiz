@@ -3,6 +3,7 @@ export * from './paths.js';
 export * from './publish.js';
 export * from './rollback.js';
 export * from './registry-io.js';
+export * from './client.js';
 export * from './backends/types.js';
 export * from './backends/factory.js';
 export * from './backends/http.js';

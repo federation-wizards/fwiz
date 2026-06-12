@@ -5,6 +5,7 @@ import type { FwizConfig } from './types.js';
 const sharedDependencySchema = Joi.object({
   singleton: Joi.boolean().required(),
   requiredVersion: Joi.string().required(),
+  strictVersion: Joi.boolean().optional(),
   eager: Joi.boolean().required(),
 });
 

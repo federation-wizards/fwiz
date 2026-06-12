@@ -2,6 +2,7 @@ import { Command } from 'commander';
 
 import { registerInitCommand } from './commands/init.js';
 import { registerPublishManifestCommand } from './commands/publish-manifest.js';
+import { registerValidateCommand } from './commands/validate.js';
 
 export function createProgram(): Command {
   const program = new Command();
@@ -13,6 +14,7 @@ export function createProgram(): Command {
 
   registerInitCommand(program);
   registerPublishManifestCommand(program);
+  registerValidateCommand(program);
 
   return program;
 }

@@ -3,6 +3,7 @@ export type WorkspaceType = 'nx' | 'turbo' | 'plain';
 export interface SharedDependencyConfig {
   singleton: boolean;
   requiredVersion: string;
+  strictVersion?: boolean;
   eager: boolean;
 }
 
