@@ -1,101 +1,111 @@
 {
-  "name": "@federation-wizards/cli",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@federation-wizards/fwiz",
+  "version": "0.1.0-alpha.1",
+  "description": "Federation Wizards CLI for Module Federation and micro-frontend workflows",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/federation-wizards/fwiz.git",
+    "directory": "apps/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/federation-wizards/fwiz/issues"
+  },
+  "homepage": "https://github.com/federation-wizards/fwiz#readme",
+  "keywords": [
+    "module-federation",
+    "micro-frontends",
+    "webpack",
+    "vite",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "main": "./dist/main.js",
+  "bin": {
+    "fwiz": "./dist/main.js"
+  },
+  "files": [
+    "dist/**",
+    "!dist/tsconfig*.tsbuildinfo"
+  ],
   "nx": {
     "targets": {
       "build": {
         "executor": "@nx/esbuild:esbuild",
-        "outputs": [
-          "{options.outputPath}"
-        ],
+        "outputs": ["{options.outputPath}"],
         "defaultConfiguration": "production",
         "options": {
           "platform": "node",
           "outputPath": "apps/cli/dist",
-          "format": [
-            "cjs"
-          ],
-          "bundle": false,
+          "format": ["cjs"],
+          "bundle": true,
+          "thirdParty": true,
           "main": "apps/cli/src/main.ts",
           "tsConfig": "apps/cli/tsconfig.app.json",
-          "assets": [
-            "apps/cli/src/assets"
-          ],
+          "assets": ["apps/cli/src/assets"],
           "esbuildOptions": {
             "sourcemap": true,
-            "outExtension": {
-              ".js": ".js"
-            }
+            "outExtension": { ".js": ".js" }
           }
         },
         "configurations": {
           "development": {},
           "production": {
             "esbuildOptions": {
+              "banner": { "js": "#!/usr/bin/env node" },
               "sourcemap": false,
-              "outExtension": {
-                ".js": ".js"
-              }
+              "outExtension": { ".js": ".js" }
             }
           }
         }
       },
       "prune-lockfile": {
-        "dependsOn": [
-          "build"
-        ],
+        "dependsOn": ["build"],
         "cache": true,
         "executor": "@nx/js:prune-lockfile",
         "outputs": [
           "{workspaceRoot}/apps/cli/dist/package.json",
           "{workspaceRoot}/apps/cli/dist/pnpm-lock.yaml"
         ],
-        "options": {
-          "buildTarget": "build"
-        }
+        "options": { "buildTarget": "build" }
       },
       "copy-workspace-modules": {
-        "dependsOn": [
-          "build"
-        ],
+        "dependsOn": ["build"],
         "cache": true,
-        "outputs": [
-          "{workspaceRoot}/apps/cli/dist/workspace_modules"
-        ],
+        "outputs": ["{workspaceRoot}/apps/cli/dist/workspace_modules"],
         "executor": "@nx/js:copy-workspace-modules",
-        "options": {
-          "buildTarget": "build"
-        }
+        "options": { "buildTarget": "build" }
       },
       "prune": {
-        "dependsOn": [
-          "prune-lockfile",
-          "copy-workspace-modules"
-        ],
+        "dependsOn": ["prune-lockfile", "copy-workspace-modules"],
         "executor": "nx:noop"
+      },
+      "prepare-publish": {
+        "dependsOn": ["prune"],
+        "executor": "nx:run-commands",
+        "options": { "command": "node scripts/prepare-cli-publish.mjs" }
       },
       "serve": {
         "continuous": true,
         "executor": "@nx/js:node",
         "defaultConfiguration": "development",
-        "dependsOn": [
-          "build"
-        ],
+        "dependsOn": ["build"],
         "options": {
-          "buildTarget": "@federation-wizards/cli:build",
+          "buildTarget": "@federation-wizards/fwiz:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
-          "development": {
-            "buildTarget": "@federation-wizards/cli:build:development"
-          },
-          "production": {
-            "buildTarget": "@federation-wizards/cli:build:production"
-          }
+          "development": { "buildTarget": "@federation-wizards/fwiz:build:development" },
+          "production": { "buildTarget": "@federation-wizards/fwiz:build:production" }
         }
       },
-      "test": {}
+      "test": { "options": { "passWithNoTests": true } }
     }
   },
   "bin": {

@@ -1,10 +1,16 @@
 {
-  "name": "@federation-wizards/fwiz",
+  "name": "@federation-wizards/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "build:cli": "nx run @federation-wizards/fwiz:prepare-publish",
+    "release": "pnpm build:cli && changeset publish"
+  },
   "private": true,
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "@eslint/js": "^9.8.0",
     "@nx/esbuild": "22.3.3",
     "@nx/eslint": "22.3.3",
